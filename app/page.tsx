@@ -93,7 +93,7 @@ export default function Home() {
               alt={"Image of current card"}
               width={100}
               height={200}
-              className={`z-50 absolute inset-0 mx-auto my-auto shadow-md w-fit ${
+              className={`z-50 absolute inset-0 mx-auto my-auto shadow-md w-fit rounded-lg ${
                 animateCard && "animate-bounce"
               }`}
             />
@@ -103,7 +103,7 @@ export default function Home() {
                 alt={"Image of current card"}
                 width={100}
                 height={200}
-                className="z-0 absolute inset-0 mx-auto my-auto shadow-md w-fit"
+                className="z-0 absolute inset-0 mx-auto my-auto shadow-md w-fit rounded-lg"
               />
             )}
           </div>
