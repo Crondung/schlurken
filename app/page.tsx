@@ -82,8 +82,8 @@ export default function Home() {
 
   return (
     <div className="w-screen h-screen bg-emerald-500 text-white pt-8 font-semibold">
-      <main className="flex flex-col items-center gap-y-2">
-        <div className="bg-emerald-700 p-6 px-8 w-3/4 text-3xl rounded-md mb-4">
+      <main className="flex flex-col items-center gap-y-2 md:gap-y-6">
+        <div className="bg-emerald-700 p-6 px-8 w-3/4 md:w-1/2 text-3xl rounded-md mb-4">
           Schlurken: {schlurken}
         </div>
         {currentCard && (
@@ -108,16 +108,16 @@ export default function Home() {
             )}
           </div>
         )}
-        <div className="w-full p-4 flex justify-evenly">
+        <div className="w-full p-4 flex justify-evenly md:w-2/3">
           <button
-            className="bg-lime-500 rounded-md shadow-md p-4 w-1/3 text-xl font-semibold active:bg-lime-600 hover:bg-lime-600"
+            className="bg-lime-500 rounded-md shadow-md p-4 w-1/3 md:2/5 text-xl font-semibold active:bg-lime-600 hover:bg-lime-600"
             onClick={handleUeber}
             disabled={disabledButtons}
           >
             Über
           </button>
           <button
-            className="bg-rose-500 rounded-md shadow-md p-4 w-1/3 text-xl font-semibold active:bg-rose-600 hover:bg-rose-600"
+            className="bg-rose-500 rounded-md shadow-md p-4 w-1/3 md:w-2/5 text-xl font-semibold active:bg-rose-600 hover:bg-rose-600"
             onClick={handleUnter}
             disabled={disabledButtons}
           >
@@ -126,7 +126,7 @@ export default function Home() {
         </div>
         {score >= 3 && (
           <button
-            className="bg-amber-500 active:bg-amber-600 hover:bg-amber-600 rounded-md shadow-md p-4 w-2/3 text-xl font-semibold"
+            className="bg-amber-500 active:bg-amber-600 hover:bg-amber-600 rounded-md shadow-md p-4 w-2/3 md:w-1/4 text-xl font-semibold"
             onClick={handlePassieren}
             disabled={disabledButtons}
           >
