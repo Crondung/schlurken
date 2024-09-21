@@ -11,6 +11,7 @@ export default function Home() {
   const [currentCard, setCurrentCard] = useState<Card>(
     deckRef.current.currentCard
   );
+  const [lastCard, setLastCard] = useState<Card | null>(null);
 
   const [schlurken, setSchlurken] = useState<number>(1);
   const [score, setScore] = useState<number>(0);
@@ -32,6 +33,7 @@ export default function Home() {
   };
 
   function handleUeberUnter(ueberUnter: boolean) {
+    setLastCard(currentCard);
     setCurrentCard(deckRef.current.currentCard);
     setAnimateCard(true);
     if (ueberUnter) {
@@ -85,15 +87,25 @@ export default function Home() {
           Schlurken: {schlurken}
         </div>
         {currentCard && (
-          <div
-            className={`m-4 shadow-md w-fit ${animateCard && "animate-bounce"}`}
-          >
+          <div className="relative w-1/2 h-80">
             <Image
               src={currentCard.getImageFile()}
               alt={"Image of current card"}
-              width={200}
-              height={400}
+              width={100}
+              height={200}
+              className={`z-50 absolute inset-0 mx-auto my-auto shadow-md w-fit ${
+                animateCard && "animate-bounce"
+              }`}
             />
+            {lastCard && (
+              <Image
+                src={lastCard.getImageFile()}
+                alt={"Image of current card"}
+                width={100}
+                height={200}
+                className="z-0 absolute inset-0 mx-auto my-auto shadow-md w-fit"
+              />
+            )}
           </div>
         )}
         <div className="w-full p-4 flex justify-evenly">
