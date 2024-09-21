@@ -72,14 +72,16 @@ export default function Home() {
   const handlePassieren = () => {
     setScore(0);
     alert(
-      `Sind Sie bereit? Das Spiel ist bei ${schlurken} bis Schlucken. Erraten Sie die nächsten 3 Karten um sie zu senden.`
+      `Sind Sie bereit? 
+      \nDas Spiel ist bei ${schlurken} bis Schlucken. 
+      \nErraten Sie die nächsten 3 Karten um sie zu senden.`
     );
   };
 
   return (
-    <div className="w-screen h-screen bg-emerald-500 text-white pt-20 font-semibold">
+    <div className="w-screen h-screen bg-emerald-500 text-white pt-10 font-semibold">
       <main className="flex flex-col items-center gap-y-4">
-        <div className="bg-emerald-700 p-10 w-3/4 text-3xl rounded-md mb-4">
+        <div className="bg-emerald-700 p-8 w-3/4 text-3xl rounded-md mb-4">
           Schlurken: {schlurken}
         </div>
         {currentCard && (
