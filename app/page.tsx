@@ -13,83 +13,112 @@ export default function Home() {
   );
 
   const [schlurken, setSchlurken] = useState<number>(1);
+  const [score, setScore] = useState<number>(0);
+  const [animateCard, setAnimateCard] = useState<boolean>(false);
+  const [disabledButtons, setDisabledButtons] = useState<boolean>(false);
 
   const increaseSchlurken = () => {
     setSchlurken(schlurken + 1);
+    setScore(score + 1);
   };
 
   const resetSchlurken = () => {
     setSchlurken(1);
+    setScore(0);
   };
 
   const YIKES = () => {
-    alert(`YIKES!!! Thrinken ${schlurken} Schlurken`);
+    alert(`YIKES!! \nThrinken ${schlurken} Schlucken...`);
   };
 
+  function handleUeberUnter(ueberUnter: boolean) {
+    setCurrentCard(deckRef.current.currentCard);
+    setAnimateCard(true);
+    if (ueberUnter) {
+      increaseSchlurken();
+    } else {
+      //trigger YIKES
+      setTimeout(() => {
+        YIKES();
+        resetSchlurken();
+        deckRef.current.shuffleDeck();
+        setCurrentCard(deckRef.current.currentCard);
+      }, 500);
+    }
+    setTimeout(() => {
+      setAnimateCard(false);
+      setDisabledButtons(false);
+    }, 500);
+  }
+
   const handleUeber = () => {
+    setDisabledButtons(true);
     const oldCard = currentCard;
     const newCard = deckRef.current.drawCard();
     const isUeber = newCard.compare(oldCard) >= 0;
-    //wait before setting?
-    if (isUeber) {
-      increaseSchlurken();
-      setCurrentCard(deckRef.current.currentCard);
-    } else {
-      //trigger YIKES
-      YIKES();
-      resetSchlurken();
-      deckRef.current.shuffleDeck();
-      setCurrentCard(deckRef.current.currentCard);
-    }
+
+    handleUeberUnter(isUeber);
   };
 
   const handleUnter = () => {
+    setDisabledButtons(true);
     const oldCard = currentCard;
     const newCard = deckRef.current.drawCard();
     const isUnter = newCard.compare(oldCard) <= 0;
-    //wait before setting?
-    if (isUnter) {
-      increaseSchlurken();
-      setCurrentCard(deckRef.current.currentCard);
-    } else {
-      //trigger YIKES
-      YIKES();
-      resetSchlurken();
-      deckRef.current.shuffleDeck();
-      setCurrentCard(deckRef.current.currentCard);
-    }
+
+    handleUeberUnter(isUnter);
+  };
+
+  const handlePassieren = () => {
+    setScore(0);
+    alert(
+      `Sind Sie bereit? Das Spiel ist bei ${schlurken} bis Schlucken. Erraten Sie die nächsten 3 Karten um sie zu senden.`
+    );
   };
 
   return (
-    <div className="w-screen h-screen bg-emerald-500 text-white pt-20">
+    <div className="w-screen h-screen bg-emerald-500 text-white pt-20 font-semibold">
       <main className="flex flex-col items-center gap-y-4">
-        <div className="bg-emerald-700 p-10 w-2/3 text-3xl rounded-md">
+        <div className="bg-emerald-700 p-10 w-3/4 text-3xl rounded-md mb-4">
           Schlurken: {schlurken}
         </div>
         {currentCard && (
-          <div className="m-4 shadow-md w-fit">
+          <div
+            className={`m-4 shadow-md w-fit ${animateCard && "animate-bounce"}`}
+          >
             <Image
               src={currentCard.getImageFile()}
               alt={"Image of current card"}
-              width={100}
-              height={200}
+              width={200}
+              height={400}
             />
           </div>
         )}
         <div className="w-full p-4 flex justify-evenly">
           <button
-            className="bg-blue-400 rounded-md shadow-md p-4 w-1/3 text-xl font-semibold"
-            onClick={handleUnter}
-          >
-            Unter
-          </button>
-          <button
-            className="bg-yellow-300 rounded-md shadow-md p-4 w-1/3 text-xl font-semibold"
+            className="bg-lime-500 rounded-md shadow-md p-4 w-1/3 text-xl font-semibold"
             onClick={handleUeber}
+            disabled={disabledButtons}
           >
             Über
           </button>
+          <button
+            className="bg-rose-500 rounded-md shadow-md p-4 w-1/3 text-xl font-semibold"
+            onClick={handleUnter}
+            disabled={disabledButtons}
+          >
+            Unter
+          </button>
         </div>
+        {score >= 3 && (
+          <button
+            className="bg-amber-500 rounded-md shadow-md p-4 w-2/3 text-xl font-semibold"
+            onClick={handlePassieren}
+            disabled={disabledButtons}
+          >
+            Passieren
+          </button>
+        )}
       </main>
     </div>
   );
