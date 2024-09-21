@@ -79,9 +79,9 @@ export default function Home() {
   };
 
   return (
-    <div className="w-screen h-screen bg-emerald-500 text-white pt-10 font-semibold">
-      <main className="flex flex-col items-center gap-y-4">
-        <div className="bg-emerald-700 p-8 w-3/4 text-3xl rounded-md mb-4">
+    <div className="w-screen h-screen bg-emerald-500 text-white pt-8 font-semibold">
+      <main className="flex flex-col items-center gap-y-2">
+        <div className="bg-emerald-700 p-6 px-8 w-3/4 text-3xl rounded-md mb-4">
           Schlurken: {schlurken}
         </div>
         {currentCard && (
