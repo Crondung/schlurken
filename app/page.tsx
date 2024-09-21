@@ -110,14 +110,14 @@ export default function Home() {
         )}
         <div className="w-full p-4 flex justify-evenly">
           <button
-            className="bg-lime-500 rounded-md shadow-md p-4 w-1/3 text-xl font-semibold"
+            className="bg-lime-500 rounded-md shadow-md p-4 w-1/3 text-xl font-semibold active:bg-lime-600 hover:bg-lime-600"
             onClick={handleUeber}
             disabled={disabledButtons}
           >
             Über
           </button>
           <button
-            className="bg-rose-500 rounded-md shadow-md p-4 w-1/3 text-xl font-semibold"
+            className="bg-rose-500 rounded-md shadow-md p-4 w-1/3 text-xl font-semibold active:bg-rose-600 hover:bg-rose-600"
             onClick={handleUnter}
             disabled={disabledButtons}
           >
@@ -126,7 +126,7 @@ export default function Home() {
         </div>
         {score >= 3 && (
           <button
-            className="bg-amber-500 rounded-md shadow-md p-4 w-2/3 text-xl font-semibold"
+            className="bg-amber-500 active:bg-amber-600 hover:bg-amber-600 rounded-md shadow-md p-4 w-2/3 text-xl font-semibold"
             onClick={handlePassieren}
             disabled={disabledButtons}
           >
