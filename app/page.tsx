@@ -110,7 +110,7 @@ export default function Home() {
         )}
         <div className="w-full p-4 flex justify-evenly md:w-2/3">
           <button
-            className="bg-lime-500 rounded-md shadow-md p-4 w-1/3 md:2/5 text-xl font-semibold active:bg-lime-600 hover:bg-lime-600"
+            className="bg-lime-500 rounded-md shadow-md p-4 w-1/3 md:w-2/5 text-xl font-semibold active:bg-lime-600 hover:bg-lime-600"
             onClick={handleUeber}
             disabled={disabledButtons}
           >
